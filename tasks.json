@@ -1,0 +1,46 @@
+{
+  "Throw out recycling": {
+    "priority": "Medium",
+    "time": "Morning"
+  },
+  "Reply to info & orders email - Reply All + CC AD": {
+    "priority": "High",
+    "time": "Anytime"
+  },
+  "Process new orders - <a href='https://excel.cloud.microsoft/' class='task-link'>spreadsheet template</a>": {
+    "priority": "High",
+    "time": "Anytime"
+  },
+  "Reply to Tenants": {
+    "priority": "Medium",
+    "time": "Morning"
+  },
+  "<a href='https://excel.cloud.microsoft/' class='task-link'>Contact tenants to chase kits</a>": {
+    "priority": "Medium",
+    "time": "Anytime"
+  },
+  "<a href='https://excel.cloud.microsoft/' class='task-link'>Process RtS kits</a>": {
+    "priority": "Medium",
+    "time": "Anytime"
+  },
+  "<a href='https://excel.cloud.microsoft/' class='task-link'>Recycle tested samples</a>": {
+    "priority": "Medium",
+    "time": "Anytime"
+  },
+  "<a href='https://excel.cloud.microsoft/' class='task-link'>Send out new orders</a>": {
+    "priority": "High",
+    "time": "Anytime"
+  },
+  "<a href='https://excel.cloud.microsoft/' class='task-link'>Check in sampling kits + log en-suite returns</a>": {
+    "priority": "High",
+    "time": "Afternoon"
+  },
+  "Clean Vials": {
+    "priority": "Low",
+    "time": "Anytime"
+  },
+  "Build Boxes": {
+    "priority": "Low",
+    "time": "Anytime"
+  }
+}
