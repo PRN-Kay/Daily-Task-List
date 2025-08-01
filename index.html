@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Task Manager</title>
+    <title>♻️ Daily Tasks</title>
     <style>
         :root {
             --bg-dark: #131313;
@@ -169,6 +169,24 @@
             margin: 0;
             flex: 1;
             min-width: 200px;
+        }
+
+        .task-link {
+            color: var(--primary-accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .task-link:hover {
+            color: var(--text-white);
+            border-bottom-color: var(--primary-accent);
+            text-shadow: 0 0 8px rgba(112, 255, 181, 0.3);
+        }
+
+        .task-link:active {
+            color: var(--secondary-accent);
         }
 
         .task-badges {
@@ -347,7 +365,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Daily Task Manager</h1>
+            <h1>♻️ Daily Tasks</h1>
             <p class="subtitle">Organize your day with style</p>
         </header>
 
@@ -363,6 +381,7 @@
                         <option value="Mid-Afternoon">Mid-Afternoon</option>
                         <option value="Evening">Evening</option>
                         <option value="Night">Night</option>
+                        <option value="Anytime">Anytime</option>
                     </select>
                 </div>
 
@@ -396,7 +415,8 @@
             'Afternoon': 2, 
             'Mid-Afternoon': 3, 
             'Evening': 4, 
-            'Night': 5 
+            'Night': 5,
+            'Anytime': 6
         };
 
         // DOM elements
@@ -452,7 +472,10 @@
                         return timeOrder[a.time] - timeOrder[b.time];
                     case 'name':
                     default:
-                        return a.name.localeCompare(b.name);
+                        // For name sorting, strip HTML tags for comparison
+                        const aName = a.name.replace(/<[^>]*>/g, '');
+                        const bName = b.name.replace(/<[^>]*>/g, '');
+                        return aName.localeCompare(bName);
                 }
             });
 
@@ -475,7 +498,7 @@
             const tasksHTML = filteredTasks.map((task, index) => `
                 <div class="task-card" style="animation-delay: ${index * 0.1}s">
                     <div class="task-header">
-                        <h3 class="task-name">${escapeHtml(task.name)}</h3>
+                        <h3 class="task-name">${task.name}</h3>
                         <div class="task-badges">
                             <span class="badge priority-${task.priority.toLowerCase()}">${task.priority}</span>
                             <span class="badge time-badge">${task.time}</span>
@@ -485,6 +508,21 @@
             `).join('');
 
             taskContainer.innerHTML = tasksHTML;
+
+            // Add click event listeners to hyperlinks
+            addLinkEventListeners();
+        }
+
+        // Add event listeners to task links
+        function addLinkEventListeners() {
+            const taskLinks = document.querySelectorAll('.task-link');
+            taskLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // You can customize what happens when links are clicked
+                    alert(`Clicked: ${link.textContent}\n\nAdd your custom functionality here!`);
+                });
+            });
         }
 
         // Show error message
@@ -492,16 +530,9 @@
             taskContainer.innerHTML = `
                 <div class="error">
                     <h3>⚠️ Error</h3>
-                    <p>${escapeHtml(message)}</p>
+                    <p>${message}</p>
                 </div>
             `;
-        }
-
-        // Escape HTML to prevent XSS
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
         }
 
         // Initialize the app
